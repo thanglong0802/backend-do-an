@@ -1,45 +1,59 @@
 package com.api.base.service.impl;
 
-import com.api.base.domain.product.ProductCreateRequest;
-import com.api.base.domain.product.ProductDetailResponse;
-import com.api.base.domain.product.ProductResponse;
-import com.api.base.domain.product.ProductUpdateRequest;
+import com.api.base.domain.PagingResponse;
+import com.api.base.domain.product.*;
 import com.api.base.entity.Category;
 import com.api.base.entity.Product;
 import com.api.base.exception.BusinessException;
 import com.api.base.repository.CategoryRepository;
 import com.api.base.repository.ProductRepository;
-import com.api.base.service.CategoryService;
+import com.api.base.service.CommonService;
 import com.api.base.service.ProductService;
 import com.api.base.utils.MessageUtil;
+import com.api.base.utils.SimpleQueryBuilder;
 import com.api.base.utils.Utilities;
 import com.api.base.utils.enumerate.MessageCode;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    private final CategoryService categoryService;
     private final CategoryRepository categoryRepository;
     private final MessageUtil messageUtil;
+    private final CommonService commonService;
 
-    public ProductServiceImpl(ProductRepository productRepository, CategoryService categoryService, CategoryRepository categoryRepository, MessageUtil messageUtil) {
+    public ProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository, MessageUtil messageUtil, CommonService commonService) {
         this.productRepository = productRepository;
-        this.categoryService = categoryService;
         this.categoryRepository = categoryRepository;
         this.messageUtil = messageUtil;
+        this.commonService = commonService;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public List<ProductResponse> getAll() {
-        List<Product> product = productRepository.findAll();
-        return Utilities.copyProperties(product, ProductResponse.class);
+    public PagingResponse search(ProductRequest request, Pageable pageable) {
+        StringBuilder whereClause = new StringBuilder("1 = 1");
+        SimpleQueryBuilder simpleQueryBuilder = new SimpleQueryBuilder();
+        Map<String, Object> params = new HashMap<>();
+        whereClause.append(Utilities.buildWhereClause(request, params));
+
+        simpleQueryBuilder.from("tbl_product");
+        simpleQueryBuilder.where(whereClause.toString());
+
+        PagingResponse pagingResponse = commonService.executeSearchData(pageable, simpleQueryBuilder, params, Product.class);
+        List<Product> productList = (List<Product>) pagingResponse.getData();
+        List<ProductResponse> productResponses = Utilities.copyProperties(productList, ProductResponse.class);
+        pagingResponse.setData(productResponses);
+        return pagingResponse;
     }
 
     @Override
@@ -47,7 +61,7 @@ public class ProductServiceImpl implements ProductService {
         // check tồn tại Category
         Category category = Utilities.returnNullInException(() -> categoryRepository.findById(request.getCategoriesId()).get());
         if(ObjectUtils.allNull(category)) {
-            throw new BusinessException(MessageCode.ERR_404.name(), messageUtil.getMessage(MessageCode.BASE_02001.name()), "Category id: " + request.getCategoriesId());
+            throw new BusinessException(MessageCode.ERR_404.name(), messageUtil.getMessage(MessageCode.BASE_01001.name()), "Category id: " + request.getCategoriesId());
         }
         // thêm mới sản phẩm
         Product product = Utilities.copyProperties(request, Product.class);

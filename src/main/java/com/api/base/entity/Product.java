@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "product")
+@Table(name = "tbl_product")
 @Getter
 @Setter
 public class Product extends BaseEntity {
@@ -19,9 +19,6 @@ public class Product extends BaseEntity {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
-
-    @Column(name = "thumb_img")
-    private String thumbImg;
     private Double price;
     private Integer quantity;
     private String description;

@@ -1,14 +1,13 @@
 package com.api.base.service;
 
-import com.api.base.domain.product.ProductCreateRequest;
-import com.api.base.domain.product.ProductDetailResponse;
-import com.api.base.domain.product.ProductResponse;
-import com.api.base.domain.product.ProductUpdateRequest;
+import com.api.base.domain.PagingResponse;
+import com.api.base.domain.product.*;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface ProductService {
-    List<ProductResponse> getAll();
+    PagingResponse search(ProductRequest request, Pageable pageable);
     ProductResponse insert(ProductCreateRequest request);
     ProductResponse update(ProductUpdateRequest request);
     ProductDetailResponse detail(Long id);

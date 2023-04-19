@@ -8,13 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbl_category")
+@Table(name = "tbl_product_attribute")
 @Getter
 @Setter
-public class Category extends BaseEntity {
+public class ProductAttribute extends BaseEntity {
+    @Column(name = "name")
     private String name;
-
-    @Column(name = "parent_id")
-    private Long parentId;
-
 }

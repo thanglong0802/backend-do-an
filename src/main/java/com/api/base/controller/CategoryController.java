@@ -4,7 +4,6 @@ import com.api.base.domain.PagingRequest;
 import com.api.base.domain.PagingResponse;
 import com.api.base.domain.category.*;
 import com.api.base.service.CategoryService;
-import com.api.base.utils.Utilities;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -35,9 +34,8 @@ public class CategoryController {
     @GetMapping
     public ResponseEntity<PagingResponse> search(CategoryRequest categoryRequest, PagingRequest pagingRequest) {
         logger.info("[Filter] {}", categoryRequest);
-        Pageable pageable = PageRequest.of(pagingRequest.getOffset(), pagingRequest.getLimit(), pagingRequest.getSort(Sort.by(Sort.Direction.ASC, "name")));
+        Pageable pageable = PageRequest.of(pagingRequest.getOffset(), pagingRequest.getLimit(), pagingRequest.getSort(Sort.by(Sort.Direction.DESC, "name")));
         return ResponseEntity.ok(categoryService.search(categoryRequest, pageable));
-
     }
 
     @ApiOperation(value = "Create new")

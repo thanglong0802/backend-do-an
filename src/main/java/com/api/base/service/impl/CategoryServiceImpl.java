@@ -46,7 +46,7 @@ public class CategoryServiceImpl implements CategoryService {
         whereClause.append(Utilities.buildWhereClause(request, params));
 
         // from category where 1 = 1
-        simpleQueryBuilder.from("category");
+        simpleQueryBuilder.from("tbl_category");
         simpleQueryBuilder.where(whereClause.toString());
 
         PagingResponse pagingResponse = commonService.executeSearchData(pageable, simpleQueryBuilder, params, Category.class);
@@ -57,35 +57,29 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryResponse> getAll() {
-        List<Category> categoryList = categoryRepository.findAll();
-        return Utilities.copyProperties(categoryList, CategoryResponse.class);
-    }
-
-    @Override
     public CategoryResponse insert(CategoryCreateRequest request) {
         Category category = Utilities.copyProperties(request, Category.class);
         categoryRepository.save(category);
         return Utilities.copyProperties(category, CategoryResponse.class);
     }
 
-    private Category getCategoriesById(Long id) {
+    private Category getCategoryById(Long id) {
         Category category = Utilities.returnNullInException(() -> categoryRepository.findById(id).get());
         if (ObjectUtils.allNull(category)) {
-            throw new BusinessException(MessageCode.ERR_404.name(), messageUtil.getMessage(MessageCode.BASE_01001.name()), "Categories id: " + id);
+            throw new BusinessException(MessageCode.ERR_404.name(), messageUtil.getMessage(MessageCode.BASE_01001.name()), "Category id: " + id);
         }
         return category;
     }
 
     @Override
     public CategoryDetailResponse detail(Long id) {
-        Category category = getCategoriesById(id);
+        Category category = getCategoryById(id);
         return Utilities.copyProperties(category, CategoryDetailResponse.class);
     }
 
     @Override
     public CategoryResponse update(CategoryUpdateRequest request) {
-        Category category = getCategoriesById(request.getId());
+        Category category = getCategoryById(request.getId());
         Utilities.updateProperties(request, category);
         categoryRepository.save(category);
         return Utilities.copyProperties(category, CategoryResponse.class);
@@ -106,7 +100,7 @@ public class CategoryServiceImpl implements CategoryService {
         try {
             List<Category> category = categoryRepository.findAllById(ids);
             if (ids.size() != category.size()) {
-                throw new BusinessException(MessageCode.ERR_404.name(), messageUtil.getMessage(MessageCode.ERR_404.name()), "Categories id: " + ids);
+                throw new BusinessException(MessageCode.ERR_404.name(), messageUtil.getMessage(MessageCode.BASE_01001.name()), "Category id: " + ids);
             }
             categoryRepository.deleteAll(category);
         } catch (Exception e) {

@@ -17,5 +17,7 @@ public enum MessageCode {
     LOG_W002,
     ERR_DATE,
     BASE_01001,
-    BASE_02001
+    BASE_02001,
+    BASE_03001,
+    BASE_04001
 }

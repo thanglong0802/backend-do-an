@@ -10,8 +10,6 @@ public interface CategoryService {
 
     PagingResponse search(CategoryRequest request, Pageable pageable);
 
-    List<CategoryResponse> getAll();
-
     CategoryResponse insert(CategoryCreateRequest request);
 
     CategoryDetailResponse detail(Long id);

@@ -13,7 +13,6 @@ public class ProductDetailResponse {
     private Long categoriesId;
     private String name;
     private ProductStatus status;
-    private String thumbImg;
     private Double price;
     private Integer quantity;
     private String description;

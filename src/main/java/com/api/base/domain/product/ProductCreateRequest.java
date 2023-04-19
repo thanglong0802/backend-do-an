@@ -26,10 +26,6 @@ public class ProductCreateRequest {
     @ApiModelProperty(value = "Trạng thái sản phẩm")
     private ProductStatus status;
 
-    @NotBlank
-    @ApiModelProperty(value = "Ảnh sản phẩm")
-    private String thumbImg;
-
     @NotNull
     @ApiModelProperty(value = "Giá sản phẩm")
     private Double price;
