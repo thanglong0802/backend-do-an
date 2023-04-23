@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +56,29 @@ public class CategoryServiceImpl implements CategoryService {
         pagingResponse.setData(categoryResponses);
         return pagingResponse;
     }
+
+    @Override
+    public List<CategoryResponse> getParentCategory() {
+        List<Category> list = categoryRepository.findCategoryByParentIdIsNull();
+        return Utilities.copyProperties(list, CategoryResponse.class);
+    }
+
+    @Override
+    public List<CategoryResponse> directoryList(Long id) {
+        List<Category> categoryList = categoryRepository.directoryList(id);
+        return Utilities.copyProperties(categoryList, CategoryResponse.class);
+    }
+
+//    private String path(Category category) {
+//        if(category.getParentId() == null){
+//            return ">" + category.getId();
+//        } else{
+//            Category category1 = categoryRepository.getOne(category.getParentId());
+//            String path = category1.getPath() + ">" + category.getId();
+//            return path;
+//        }
+//
+//    }
 
     @Override
     public CategoryResponse insert(CategoryCreateRequest request) {

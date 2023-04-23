@@ -16,5 +16,4 @@ public class Category extends BaseEntity {
 
     @Column(name = "parent_id")
     private Long parentId;
-
 }

@@ -3,6 +3,7 @@ package com.api.base.controller;
 import com.api.base.domain.PagingRequest;
 import com.api.base.domain.PagingResponse;
 import com.api.base.domain.category.*;
+import com.api.base.entity.Category;
 import com.api.base.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,11 +32,23 @@ public class CategoryController {
     }
 
     @ApiOperation(value = "Get list Category")
-    @GetMapping
+    @GetMapping("/search")
     public ResponseEntity<PagingResponse> search(CategoryRequest categoryRequest, PagingRequest pagingRequest) {
         logger.info("[Filter] {}", categoryRequest);
         Pageable pageable = PageRequest.of(pagingRequest.getOffset(), pagingRequest.getLimit(), pagingRequest.getSort(Sort.by(Sort.Direction.DESC, "name")));
         return ResponseEntity.ok(categoryService.search(categoryRequest, pageable));
+    }
+
+    @ApiOperation("Get All")
+    @GetMapping
+    public List<CategoryResponse> getAll() {
+        return categoryService.getParentCategory();
+    }
+
+    @ApiOperation("Get child category by parent category")
+    @GetMapping("/{id}")
+    public List<CategoryResponse> directoryList(@PathVariable Long id) {
+        return categoryService.directoryList(id);
     }
 
     @ApiOperation(value = "Create new")
@@ -46,7 +59,7 @@ public class CategoryController {
     }
 
     @ApiOperation(value = "Get by ID")
-    @GetMapping("/{id}")
+    @GetMapping("/detail/{id}")
     public ResponseEntity<CategoryDetailResponse> detail(@PathVariable Long id) {
         logger.info("[Get by ID] {}");
         return ResponseEntity.ok(categoryService.detail(id));
