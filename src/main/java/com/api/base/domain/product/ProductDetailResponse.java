@@ -5,11 +5,17 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.Instant;
+
 @Getter
 @Setter
 @ToString
 public class ProductDetailResponse {
     private Long id;
+    private Instant createdAt;
+    private String createdBy;
+    private String updatedBy;
+    private Instant updatedAt;
     private Long categoriesId;
     private String name;
     private ProductStatus status;

@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Setter
 public class Product extends BaseEntity {
 
-    @Column(name = "categories_id")
+    @Column(name = "category_id")
     private Long categoriesId;
     private String name;
 

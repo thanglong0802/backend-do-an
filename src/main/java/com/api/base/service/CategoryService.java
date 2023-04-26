@@ -11,6 +11,8 @@ public interface CategoryService {
     PagingResponse search(CategoryRequest request, Pageable pageable);
     List<CategoryResponse> getParentCategory();
 
+    List<CategoryResponse> getAllProductsInTheCategory(Long id);
+
     List<CategoryResponse> directoryList(Long id);
 
     CategoryResponse insert(CategoryCreateRequest request);

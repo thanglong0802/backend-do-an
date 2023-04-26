@@ -64,6 +64,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public List<CategoryResponse> getAllProductsInTheCategory(Long id) {
+        List<Category> list = categoryRepository.getAllProductsInTheCategory(id);
+        return Utilities.copyProperties(list, CategoryResponse.class);
+    }
+
+    @Override
     public List<CategoryResponse> directoryList(Long id) {
         List<Category> categoryList = categoryRepository.directoryList(id);
         return Utilities.copyProperties(categoryList, CategoryResponse.class);

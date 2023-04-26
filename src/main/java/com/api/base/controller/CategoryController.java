@@ -39,10 +39,16 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.search(categoryRequest, pageable));
     }
 
-    @ApiOperation("Get All")
+    @ApiOperation("Get All parent category")
     @GetMapping
     public List<CategoryResponse> getAll() {
         return categoryService.getParentCategory();
+    }
+
+    @ApiOperation("Get All Products In The Category")
+    @GetMapping("/all-product/{id}")
+    public List<CategoryResponse> getAllProductsInTheCategory(@PathVariable Long id) {
+        return categoryService.getAllProductsInTheCategory(id);
     }
 
     @ApiOperation("Get child category by parent category")
