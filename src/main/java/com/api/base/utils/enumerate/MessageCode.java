@@ -21,5 +21,6 @@ public enum MessageCode {
     BASE_03001,
     BASE_04001,
     BASE_05001,
-    BASE_06001
+    BASE_06001,
+    BASE_07001
 }
