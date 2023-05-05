@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -51,5 +52,10 @@ public class UserController {
     @DeleteMapping("/{userName}")
     public ResponseEntity<Boolean> delete(@PathVariable String userName) {
         return ResponseEntity.ok(userService.delete(userName));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Boolean> deleteAll(@RequestParam List<String> userName) {
+        return ResponseEntity.ok(userService.deleteAll(userName));
     }
 }

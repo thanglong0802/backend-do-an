@@ -10,6 +10,6 @@ import lombok.ToString;
 public class UserResponse {
     private String username;
     private String fullName;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private String email;
 }

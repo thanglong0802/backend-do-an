@@ -16,7 +16,7 @@ public class UserUpdateRequest {
     @NotBlank
     private String fullName;
     @NotNull
-    private Integer phoneNumber;
+    private String phoneNumber;
     @NotBlank
     private String email;
 }

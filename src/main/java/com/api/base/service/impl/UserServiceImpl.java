@@ -14,6 +14,7 @@ import com.api.base.utils.MessageUtil;
 import com.api.base.utils.SimpleQueryBuilder;
 import com.api.base.utils.Utilities;
 import com.api.base.utils.enumerate.MessageCode;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -72,21 +73,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean delete(String userName) {
         try {
+            User user = userRepository.findUserByUsername(userName);
+            if (ObjectUtils.allNull(user)) {
+                throw new BusinessException(MessageCode.ERR_404.name(), messageUtil.getMessage(MessageCode.BASE_07001.name()), "user name not found: " + userName);
+            }
             userRepository.deleteUserByUsername(userName);
+            return true;
         } catch (Exception e) {
             return false;
         }
-        return true;
     }
 
     @Override
     public Boolean deleteAll(List<String> userName) {
         try {
-            List<User> userList = userRepository.findAll();
-            if (userList.size() != userName.size()) {
-                throw new BusinessException(MessageCode.ERR_404.name(), messageUtil.getMessage(MessageCode.BASE_07001.name()), "user name not found: " + userName);
+            for (String name: userName) {
+                User user = userRepository.findUserByUsername(name);
+                userRepository.delete(user);
             }
-            userRepository.deleteAll(userList);
         }catch (Exception e) {
             return false;
         }

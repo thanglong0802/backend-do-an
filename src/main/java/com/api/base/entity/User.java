@@ -29,7 +29,7 @@ public class User implements UserDetails {
     private String fullName;
 
     @Column(name = "phone_number")
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "email")
     private String email;
@@ -59,11 +59,11 @@ public class User implements UserDetails {
         this.fullName = fullName;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
