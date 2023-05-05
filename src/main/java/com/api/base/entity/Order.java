@@ -14,11 +14,17 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
     @Column(name = "customer_name")
     private String name;
+
     @Column(name = "address")
     private String address;
+
     @Column(name = "phone_number")
     private String phoneNumber;
 }

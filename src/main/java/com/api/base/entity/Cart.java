@@ -13,6 +13,7 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "product_id")
     private Long productId;
     private Integer quantity;

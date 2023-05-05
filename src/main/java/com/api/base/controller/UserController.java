@@ -41,21 +41,25 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserResponse> insert(@Valid @RequestBody UserCreateRequest request) {
+        logger.info("[Create new] {}");
         return ResponseEntity.ok(userService.insert(request));
     }
 
     @PutMapping
     public ResponseEntity<UserResponse> update(@Valid @RequestBody UserUpdateRequest request) {
+        logger.info("[Update] {}");
         return ResponseEntity.ok(userService.update(request));
     }
 
     @DeleteMapping("/{userName}")
     public ResponseEntity<Boolean> delete(@PathVariable String userName) {
+        logger.info("[Delete by user name] {}");
         return ResponseEntity.ok(userService.delete(userName));
     }
 
     @DeleteMapping
     public ResponseEntity<Boolean> deleteAll(@RequestParam List<String> userName) {
+        logger.info("[Delete all user in param] {}");
         return ResponseEntity.ok(userService.deleteAll(userName));
     }
 }

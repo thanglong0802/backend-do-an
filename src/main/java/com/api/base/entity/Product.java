@@ -19,6 +19,7 @@ public class Product extends BaseEntity {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
+
     private Double price;
     private Integer quantity;
     private String description;
