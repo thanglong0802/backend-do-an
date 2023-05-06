@@ -13,5 +13,5 @@ public class ProductValueRequest {
 
     @ApiModelProperty(value = "Product Value")
     @Annotations.Operator(value = "LIKE")
-    private String name;
+    private String nameValue;
 }

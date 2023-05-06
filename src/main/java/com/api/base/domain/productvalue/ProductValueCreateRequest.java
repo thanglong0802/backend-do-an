@@ -17,5 +17,5 @@ public class ProductValueCreateRequest {
     private Long productAttributeId;
 
     @NotBlank
-    private String name;
+    private String nameValue;
 }

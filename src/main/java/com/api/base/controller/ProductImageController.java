@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Api(description = "Model Product Image")
+@Api(description = "Module Product Image")
 @RestController
 @RequestMapping("/product-image")
 public class ProductImageController {

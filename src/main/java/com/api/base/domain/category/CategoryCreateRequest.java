@@ -14,7 +14,7 @@ public class CategoryCreateRequest {
 
     @NotBlank
     @ApiModelProperty(value = "Tên danh mục")
-    private String name;
+    private String nameCategory;
 
     @ApiModelProperty(value = "ID danh mục cha")
     private Long parentId;

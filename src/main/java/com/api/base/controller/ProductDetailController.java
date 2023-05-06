@@ -1,9 +1,6 @@
 package com.api.base.controller;
 
-import com.api.base.domain.productdetail.ProductDetailCreateRequest;
-import com.api.base.domain.productdetail.ProductDetailDetailResponse;
-import com.api.base.domain.productdetail.ProductDetailResponse;
-import com.api.base.domain.productdetail.ProductDetailUpdateRequest;
+import com.api.base.domain.productdetail.*;
 import com.api.base.service.ProductDetailService;
 import io.swagger.annotations.Api;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product-detail")
-@Api(description = "API product detail")
+@Api(description = "Module product detail")
 public class ProductDetailController {
 
     private final ProductDetailService productDetailService;

@@ -1,9 +1,6 @@
 package com.api.base.service.impl;
 
-import com.api.base.domain.productdetail.ProductDetailCreateRequest;
-import com.api.base.domain.productdetail.ProductDetailDetailResponse;
-import com.api.base.domain.productdetail.ProductDetailResponse;
-import com.api.base.domain.productdetail.ProductDetailUpdateRequest;
+import com.api.base.domain.productdetail.*;
 import com.api.base.entity.ProductDetail;
 import com.api.base.exception.BusinessException;
 import com.api.base.repository.ProductDetailRepository;
@@ -62,4 +59,5 @@ public class ProductDetailServiceImpl implements ProductDetailService {
         }
         return true;
     }
+
 }

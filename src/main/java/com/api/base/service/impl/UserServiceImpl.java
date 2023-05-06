@@ -14,8 +14,8 @@ import com.api.base.utils.MessageUtil;
 import com.api.base.utils.SimpleQueryBuilder;
 import com.api.base.utils.Utilities;
 import com.api.base.utils.enumerate.MessageCode;
+import com.api.base.utils.validator.EmailValidator;
 import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,10 +23,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends EmailValidator implements UserService {
 
     private final UserRepository userRepository;
     private final CommonService commonService;
@@ -38,8 +40,30 @@ public class UserServiceImpl implements UserService {
         this.messageUtil = messageUtil;
     }
 
+    private boolean emailValidation(String email) {
+        boolean emailValidator = isValidEmail(email);
+        if (!(emailValidator == true)) {
+            throw new BusinessException("Incorrect email format");
+        }
+        return true;
+    }
+
+    private boolean passwordValidation(String password) {
+        if (isAscii(password)) {
+            Pattern pattern = Pattern.compile("^(?=.*\\\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20}$");
+            Matcher matcher = pattern.matcher(password);
+            if (!matcher.matches()) {
+                throw new BusinessException("Incorrect password format");
+            }
+            return true;
+        } else {
+            throw new BusinessException("characters not in ascii");
+        }
+    }
+
     @Override
     public UserResponse insert(UserCreateRequest request) {
+        emailValidation(request.getEmail());
         User user = Utilities.copyProperties(request, User.class);
         userRepository.save(user);
         return Utilities.copyProperties(user, UserResponse.class);
@@ -65,6 +89,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse update(UserUpdateRequest request) {
         User user = userRepository.findUserByUsername(request.getUsername());
+        emailValidation(request.getEmail());
         Utilities.updateProperties(request, user);
         userRepository.save(user);
         return Utilities.copyProperties(user, UserResponse.class);

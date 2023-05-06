@@ -12,5 +12,5 @@ import lombok.ToString;
 public class ProductAttributeRequest {
     @ApiModelProperty(value = "Product Attribute")
     @Annotations.Operator(value = "LIKE")
-    private String name;
+    private String nameAttribute;
 }

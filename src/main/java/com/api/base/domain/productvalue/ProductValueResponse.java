@@ -16,5 +16,5 @@ public class ProductValueResponse {
     private String updatedBy;
     private Instant updatedAt;
     private Long productAttributeId;
-    private String name;
+    private String nameValue;
 }

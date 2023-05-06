@@ -15,5 +15,5 @@ public class ProductAttributeResponse {
     private String createdBy;
     private String updatedBy;
     private Instant updatedAt;
-    private String name;
+    private String nameAttribute;
 }

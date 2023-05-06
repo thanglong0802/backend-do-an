@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Api(description = "Model Product Attribute")
+@Api(description = "Module Product Attribute")
 @RestController
 @RequestMapping("/product-attribute")
 public class ProductAttributeController {

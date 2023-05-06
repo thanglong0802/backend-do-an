@@ -14,5 +14,7 @@ import javax.persistence.Table;
 public class ProductValue extends BaseEntity {
     @Column(name = "product_attribute_id")
     private Long productAttributeId;
-    private String name;
+
+    @Column(name = "name_value")
+    private String nameValue;
 }

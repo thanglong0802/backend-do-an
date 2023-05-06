@@ -13,5 +13,5 @@ import javax.validation.constraints.NotBlank;
 public class ProductAttributeCreateRequest {
     @NotBlank
     @ApiModelProperty(value = "Tên thuộc tính")
-    private String name;
+    private String nameAttribute;
 }

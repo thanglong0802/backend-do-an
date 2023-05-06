@@ -12,5 +12,5 @@ import lombok.ToString;
 public class UserRequest {
     @ApiModelProperty(value = "User Name")
     @Annotations.Operator(value = "LIKE")
-    private String userName;
+    private String username;
 }

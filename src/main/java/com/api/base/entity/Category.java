@@ -12,7 +12,8 @@ import javax.persistence.Table;
 @Getter
 @Setter
 public class Category extends BaseEntity {
-    private String name;
+    @Column(name = "name_category")
+    private String nameCategory;
 
     @Column(name = "parent_id")
     private Long parentId;

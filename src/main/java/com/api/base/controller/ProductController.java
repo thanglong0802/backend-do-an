@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Api(description = "Model Product")
+@Api(description = "Module Product")
 @RestController
 @RequestMapping("/product")
 public class ProductController {

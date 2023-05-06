@@ -1,9 +1,6 @@
 package com.api.base.service;
 
-import com.api.base.domain.productdetail.ProductDetailCreateRequest;
-import com.api.base.domain.productdetail.ProductDetailDetailResponse;
-import com.api.base.domain.productdetail.ProductDetailResponse;
-import com.api.base.domain.productdetail.ProductDetailUpdateRequest;
+import com.api.base.domain.productdetail.*;
 
 import java.util.List;
 

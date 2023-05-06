@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Api(description = "Model Product Value")
+@Api(description = "Module Product Value")
 @RestController
 @RequestMapping("/product-value")
 public class ProductValueController {

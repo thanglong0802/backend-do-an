@@ -13,5 +13,5 @@ public class CategoryRequest {
 
     @ApiModelProperty(value = "Category")
     @Annotations.Operator(value = "LIKE")
-    private String name;
+    private String nameCategory;
 }

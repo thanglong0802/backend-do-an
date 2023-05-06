@@ -15,6 +15,6 @@ public class CategoryDetailResponse {
     private String createdBy;
     private String updatedBy;
     private Instant updatedAt;
-    private String name;
+    private String nameCategory;
     private Long parentId;
 }

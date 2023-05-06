@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Api(description = "Model Category")
+@Api(description = "Module Category")
 @RestController
 @RequestMapping("/category")
 public class CategoryController {

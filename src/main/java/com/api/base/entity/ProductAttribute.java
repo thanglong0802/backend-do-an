@@ -12,6 +12,6 @@ import javax.persistence.Table;
 @Getter
 @Setter
 public class ProductAttribute extends BaseEntity {
-    @Column(name = "name")
-    private String name;
+    @Column(name = "name_attribute")
+    private String nameAttribute;
 }
