@@ -85,10 +85,10 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.delete(id));
     }
 
-    @ApiOperation(value = "Delete by quantity")
+    @ApiOperation(value = "Delete by list")
     @DeleteMapping
     public ResponseEntity<Boolean> deleteAll(@RequestParam List<Long> ids) {
-        logger.info("[Delete by quantity] {}");
+        logger.info("[Delete by list] {}");
         return ResponseEntity.ok(categoryService.deleteAll(ids));
     }
 

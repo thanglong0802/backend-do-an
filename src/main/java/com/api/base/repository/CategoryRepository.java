@@ -1,6 +1,5 @@
 package com.api.base.repository;
 
-import com.api.base.domain.category.CategoryResponse;
 import com.api.base.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
