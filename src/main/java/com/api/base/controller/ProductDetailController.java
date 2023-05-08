@@ -25,6 +25,11 @@ public class ProductDetailController {
         return ResponseEntity.ok(productDetailService.detail());
     }
 
+    @GetMapping("/category-attribute")
+    public List<ProductDetailResponseWithAttribute> categoryAttribute() {
+        return productDetailService.searchProductByCategoryAndAttribute();
+    }
+
     @PostMapping
     public ResponseEntity<ProductDetailResponse> insert(@Valid @RequestBody ProductDetailCreateRequest request) {
         return ResponseEntity.ok(productDetailService.insert(request));

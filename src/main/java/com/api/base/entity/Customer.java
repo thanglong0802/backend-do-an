@@ -1,26 +1,23 @@
 package com.api.base.entity;
 
-import com.api.base.utils.enumerate.OrderStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tbl_order")
+@Table(name = "tbl_customer")
 @Getter
 @Setter
-public class Order {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
-
     @Column(name = "customer_name")
-    private String name;
+    private String nameCustomer;
 
     @Column(name = "address")
     private String address;

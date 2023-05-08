@@ -1,5 +1,6 @@
 package com.api.base.entity;
 
+import com.api.base.utils.enumerate.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,10 +14,17 @@ public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "cart_id")
+    private Long cartId;
+
     @Column(name = "order_id")
     private Long orderId;
-    @Column(name = "product_id")
-    private Long productId;
-    private Integer quantity;
-    private Double price;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+
+    @Column(name = "total_price")
+    private Double totalPrice;
 }

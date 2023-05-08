@@ -4,6 +4,7 @@ import com.api.base.domain.productdetail.*;
 import com.api.base.entity.ProductDetail;
 import com.api.base.exception.BusinessException;
 import com.api.base.repository.ProductDetailRepository;
+import com.api.base.service.CommonService;
 import com.api.base.service.ProductDetailService;
 import com.api.base.utils.MessageUtil;
 import com.api.base.utils.Utilities;
@@ -12,7 +13,12 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Tuple;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -20,10 +26,12 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
     private final ProductDetailRepository productDetailRepository;
     private final MessageUtil messageUtil;
+    private final CommonService commonService;
 
-    public ProductDetailServiceImpl(ProductDetailRepository productDetailRepository, MessageUtil messageUtil) {
+    public ProductDetailServiceImpl(ProductDetailRepository productDetailRepository, MessageUtil messageUtil, CommonService commonService) {
         this.productDetailRepository = productDetailRepository;
         this.messageUtil = messageUtil;
+        this.commonService = commonService;
     }
 
     @Override
@@ -58,6 +66,27 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<ProductDetailResponseWithAttribute> searchProductByCategoryAndAttribute() {
+        List<ProductDetailResponseWithAttribute> result = new ArrayList<>();
+        String sql = " SELECT d.id, c.name_category, a.name_attribute, v.name_value"
+                        + " FROM tbl_product_detail_attribute d"
+                        + "     INNER JOIN tbl_category c ON d.category_id = c.id"
+                        + "     INNER JOIN tbl_product_attribute a ON d.attribute_id = a.id"
+                        + "     INNER JOIN tbl_product_value v ON d.attribute_value = v.id";
+        Map<String, Object> params = new HashMap<>();
+        List<Tuple> tuples = commonService.executeGetListTuple(sql, params);
+        for (Tuple item : tuples) {
+            ProductDetailResponseWithAttribute attribute = new ProductDetailResponseWithAttribute();
+            attribute.setId(Utilities.returnNullInException(() -> item.get("id", BigInteger.class).longValue()));
+            attribute.setNameAttribute(item.get("name_attribute", String.class));
+            attribute.setNameCategory(item.get("name_category", String.class));
+            attribute.setNameValue(item.get("name_value", String.class));
+            result.add(attribute);
+        }
+        return result;
     }
 
 }

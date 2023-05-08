@@ -1,8 +1,7 @@
 package com.api.base.entity;
 
 import com.api.base.utils.enumerate.ProductStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -10,6 +9,9 @@ import javax.persistence.*;
 @Table(name = "tbl_product")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Product extends BaseEntity {
 
     @Column(name = "category_id")

@@ -9,4 +9,5 @@ public interface ProductDetailService {
     ProductDetailResponse insert(ProductDetailCreateRequest request);
     ProductDetailResponse update(ProductDetailUpdateRequest request);
     Boolean delete(Long id);
+    List<ProductDetailResponseWithAttribute> searchProductByCategoryAndAttribute();
 }
