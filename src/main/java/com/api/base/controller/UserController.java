@@ -2,10 +2,7 @@ package com.api.base.controller;
 
 import com.api.base.domain.PagingRequest;
 import com.api.base.domain.PagingResponse;
-import com.api.base.domain.user.UserCreateRequest;
-import com.api.base.domain.user.UserRequest;
-import com.api.base.domain.user.UserResponse;
-import com.api.base.domain.user.UserUpdateRequest;
+import com.api.base.domain.user.*;
 import com.api.base.service.UserService;
 import io.swagger.annotations.Api;
 import org.slf4j.Logger;
@@ -37,6 +34,11 @@ public class UserController {
         logger.info("[Filters] {}", request);
         Pageable pageRequest = PageRequest.of(pagingRequest.getOffset(), pagingRequest.getLimit(), pagingRequest.getSort(Sort.by(Sort.Direction.ASC, "user_name")));
         return ResponseEntity.ok(userService.search(request, pageRequest));
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<UserLogin> login(@Valid @RequestParam String username, @Valid @RequestParam String password) {
+        return ResponseEntity.ok(userService.login(username, password));
     }
 
     @PostMapping

@@ -1,10 +1,7 @@
 package com.api.base.service.impl;
 
 import com.api.base.domain.PagingResponse;
-import com.api.base.domain.user.UserCreateRequest;
-import com.api.base.domain.user.UserRequest;
-import com.api.base.domain.user.UserResponse;
-import com.api.base.domain.user.UserUpdateRequest;
+import com.api.base.domain.user.*;
 import com.api.base.entity.User;
 import com.api.base.exception.BusinessException;
 import com.api.base.repository.UserRepository;
@@ -84,6 +81,19 @@ public class UserServiceImpl extends EmailValidator implements UserService {
         List<UserResponse> caseResponses = Utilities.copyProperties(datas, UserResponse.class);
         pagingRs.setData(caseResponses);
         return pagingRs;
+    }
+
+    @Override
+    public UserLogin login(String username, String password) {
+        User userNameLogin = userRepository.findUserByUsername(username);
+        String passwordUser = userNameLogin.getPassword();
+        if (ObjectUtils.allNull(userNameLogin)) {
+            throw new BusinessException("User Not Found");
+        }
+        if (passwordUser.equals(password)) {
+            return Utilities.copyProperties(userNameLogin, UserLogin.class);
+        }
+        throw new BusinessException("Password Not Found");
     }
 
     @Override
