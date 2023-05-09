@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/account-management")
+@RequestMapping("/user")
 @Api(description = "Module User")
 public class UserController {
 

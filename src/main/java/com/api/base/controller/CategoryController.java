@@ -35,7 +35,7 @@ public class CategoryController {
     @GetMapping("/search")
     public ResponseEntity<PagingResponse> search(CategoryRequest categoryRequest, PagingRequest pagingRequest) {
         logger.info("[Filter] {}", categoryRequest);
-        Pageable pageable = PageRequest.of(pagingRequest.getOffset(), pagingRequest.getLimit(), pagingRequest.getSort(Sort.by(Sort.Direction.DESC, "name")));
+        Pageable pageable = PageRequest.of(pagingRequest.getOffset(), pagingRequest.getLimit(), pagingRequest.getSort(Sort.by(Sort.Direction.DESC, "name_category")));
         return ResponseEntity.ok(categoryService.search(categoryRequest, pageable));
     }
 
