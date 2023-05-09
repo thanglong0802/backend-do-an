@@ -27,4 +27,5 @@ public class OrderDetail {
 
     @Column(name = "total_price")
     private Double totalPrice;
+
 }
