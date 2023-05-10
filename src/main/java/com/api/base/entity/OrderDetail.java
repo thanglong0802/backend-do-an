@@ -18,8 +18,8 @@ public class OrderDetail {
     @Column(name = "cart_id")
     private Long cartId;
 
-    @Column(name = "order_id")
-    private Long orderId;
+    @Column(name = "customer_id")
+    private Long customerId;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)

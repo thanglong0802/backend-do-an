@@ -17,7 +17,7 @@ public class OrderDetailResponse {
 
     private Long cartId;
 
-    private Long orderId;
+    private Long customerId;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;

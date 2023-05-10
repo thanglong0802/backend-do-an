@@ -14,6 +14,6 @@ public class OrderDetailCreateRequest {
     @NotNull
     private Long cartId;
     @NotNull
-    private Long orderId;
+    private Long customerId;
 
 }
