@@ -1,6 +1,7 @@
 package com.api.base.controller;
 
 import com.api.base.domain.cart.CartCreateRequest;
+import com.api.base.domain.cart.CartDetailResponse;
 import com.api.base.domain.cart.CartResponse;
 import com.api.base.service.CartService;
 import io.swagger.annotations.Api;
@@ -31,8 +32,14 @@ public class CartController {
         return ResponseEntity.ok(cartService.getAll());
     }
 
+    @GetMapping("/cart-list")
+    public ResponseEntity<List<CartDetailResponse>> cartList() {
+        return ResponseEntity.ok(cartService.cartList());
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         return ResponseEntity.ok(cartService.delete(id));
     }
+
 }

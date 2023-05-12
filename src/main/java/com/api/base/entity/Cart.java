@@ -16,5 +16,8 @@ public class Cart {
 
     @Column(name = "product_id")
     private Long productId;
-    private Integer quantity;
+    @Column(name = "quantity_product")
+    private Integer quantityProduct;
+    @Column(name = "total_price")
+    private Double totalPrice;
 }

@@ -7,11 +7,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CartResponse {
+public class CartDetailResponse {
 
     private Long id;
-    private Long productId;
+    private String nameProduct;
     private Integer quantityProduct;
+    private Double price;
     private Double totalPrice;
 
 }
