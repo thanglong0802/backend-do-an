@@ -1,23 +1,19 @@
-package com.api.base.domain.product;
+package com.api.base.domain.category;
 
 import com.api.base.utils.enumerate.ProductStatus;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.Instant;
 
 @Getter
 @Setter
 @ToString
-public class ProductDetailResponse {
+@NoArgsConstructor
+@AllArgsConstructor
+public class CategoryResponseProduct {
+
     private Long id;
-    private Instant createdAt;
-    private String createdBy;
-    private String updatedBy;
-    private Instant updatedAt;
     private Long categoriesId;
-    private String nameProduct;
     private ProductStatus status;
     private Double price;
     private Integer quantity;
@@ -25,4 +21,12 @@ public class ProductDetailResponse {
     private String use;
     private String producer;
     private String whereProduction;
+    private String nameProduct;
+    private Instant createdAt;
+    private String createdBy;
+    private Instant updatedAt;
+    private String updatedBy;
+    private String nameCategory;
+    private Long parentId;
+
 }

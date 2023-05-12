@@ -3,7 +3,6 @@ package com.api.base.controller;
 import com.api.base.domain.PagingRequest;
 import com.api.base.domain.PagingResponse;
 import com.api.base.domain.category.*;
-import com.api.base.entity.Category;
 import com.api.base.service.CategoryService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,7 +46,7 @@ public class CategoryController {
 
     @ApiOperation("Get All Products In The Category")
     @GetMapping("/all-product/{id}")
-    public List<CategoryResponse> getAllProductsInTheCategory(@PathVariable Long id) {
+    public List<CategoryResponseProduct> getAllProductsInTheCategory(@PathVariable Long id) {
         return categoryService.getAllProductsInTheCategory(id);
     }
 

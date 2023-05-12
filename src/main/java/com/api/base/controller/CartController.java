@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/cart")
@@ -23,6 +24,11 @@ public class CartController {
     @PostMapping
     public ResponseEntity<CartResponse> insert(@Valid @RequestBody CartCreateRequest request) {
         return ResponseEntity.ok(cartService.insert(request));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CartResponse>> getAll() {
+        return ResponseEntity.ok(cartService.getAll());
     }
 
     @DeleteMapping("/{id}")

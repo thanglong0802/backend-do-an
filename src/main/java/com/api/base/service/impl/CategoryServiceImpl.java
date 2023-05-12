@@ -2,6 +2,7 @@ package com.api.base.service.impl;
 
 import com.api.base.domain.PagingResponse;
 import com.api.base.domain.category.*;
+import com.api.base.domain.productdetail.ProductDetailResponseWithAttribute;
 import com.api.base.entity.Category;
 import com.api.base.exception.BusinessException;
 import com.api.base.repository.CategoryRepository;
@@ -11,11 +12,16 @@ import com.api.base.utils.MessageUtil;
 import com.api.base.utils.SimpleQueryBuilder;
 import com.api.base.utils.Utilities;
 import com.api.base.utils.enumerate.MessageCode;
+import com.api.base.utils.enumerate.ProductStatus;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Tuple;
+import java.math.BigInteger;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,9 +70,37 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryResponse> getAllProductsInTheCategory(Long id) {
-        List<Category> list = categoryRepository.getAllProductsInTheCategory(id);
-        return Utilities.copyProperties(list, CategoryResponse.class);
+    public List<CategoryResponseProduct> getAllProductsInTheCategory(Long id) {
+        List<CategoryResponseProduct> result = new ArrayList<>();
+        String sql = String.format("WITH RECURSIVE cte AS " +
+                "(SELECT id, created_at, created_by, updated_at, updated_by, name_category, parent_id FROM tbl_category WHERE id = %d " +
+                "UNION ALL " +
+                "SELECT c.id, c.created_at, c.created_by, c.updated_at, c.updated_by, c.name_category, c.parent_id FROM tbl_category c " +
+                "JOIN cte ON c.parent_id = cte.id) " +
+                "SELECT p.id, p.category_id, p.status, p.price, p.quantity, p.description, p.use, p.producer, p.where_production, p.name_product, p.created_at, p.created_by, p.updated_at, p.updated_by, c.name_category, c.parent_id FROM tbl_product p " +
+                "JOIN cte c ON p.category_id = c.id", id);
+        Map<String, Object> params = new HashMap<>();
+        List<Tuple> tuples = commonService.executeGetListTuple(sql, params);
+        for (Tuple item : tuples) {
+            CategoryResponseProduct attribute = new CategoryResponseProduct();
+            attribute.setId(Utilities.returnNullInException(() -> item.get("id", BigInteger.class).longValue()));
+            attribute.setCategoriesId(Utilities.returnNullInException(() -> item.get("category_id", BigInteger.class).longValue()));
+            attribute.setStatus(ProductStatus.CON_HANG);
+            attribute.setPrice(item.get("price", Double.class));
+            attribute.setQuantity(item.get("quantity", Integer.class));
+            attribute.setUse((item.get("use", String.class)));
+            attribute.setProducer(item.get("producer", String.class));
+            attribute.setWhereProduction(item.get("where_production", String.class));
+            attribute.setNameProduct(item.get("name_product", String.class));
+            attribute.setCreatedAt(((Timestamp) item.get("created_at")).toInstant());
+            attribute.setCreatedBy(item.get("created_by", String.class));
+            attribute.setUpdatedAt(((Timestamp) item.get("created_at")).toInstant());
+            attribute.setUpdatedBy(item.get("updated_by", String.class));
+            attribute.setNameCategory(item.get("name_category", String.class));
+            attribute.setParentId(Utilities.returnNullInException(() -> item.get("parent_id", BigInteger.class).longValue()));
+            result.add(attribute);
+        }
+        return result;
     }
 
     @Override

@@ -51,7 +51,7 @@ public class ProductValueController {
     @GetMapping
     public ResponseEntity<PagingResponse> search(ProductValueRequest request, PagingRequest pagingRequest) {
         logger.info("Filters] {}");
-        Pageable pageable = PageRequest.of(pagingRequest.getOffset(), pagingRequest.getLimit(), pagingRequest.getSort(Sort.by(Sort.Direction.ASC, "name")));
+        Pageable pageable = PageRequest.of(pagingRequest.getOffset(), pagingRequest.getLimit(), pagingRequest.getSort(Sort.by(Sort.Direction.ASC, "name_value")));
         return ResponseEntity.ok(productValueService.search(request, pageable));
     }
 

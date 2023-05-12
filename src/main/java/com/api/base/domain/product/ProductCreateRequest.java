@@ -20,7 +20,7 @@ public class ProductCreateRequest {
 
     @NotBlank
     @ApiModelProperty(value = "Tên sản phẩm")
-    private String name;
+    private String nameProduct;
 
     @NotNull
     @ApiModelProperty(value = "Trạng thái sản phẩm")

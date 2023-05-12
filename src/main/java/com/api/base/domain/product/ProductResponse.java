@@ -17,7 +17,7 @@ public class ProductResponse {
     private String updatedBy;
     private Instant updatedAt;
     private Long categoriesId;
-    private String name;
+    private String nameProduct;
     private ProductStatus status;
     private Double price;
     private Integer quantity;

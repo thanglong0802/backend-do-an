@@ -9,6 +9,8 @@ import com.api.base.utils.Utilities;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class CartServiceImpl implements CartService {
@@ -24,6 +26,12 @@ public class CartServiceImpl implements CartService {
         Cart cart = Utilities.copyProperties(request, Cart.class);
         cartRepository.save(cart);
         return Utilities.copyProperties(cart, CartResponse.class);
+    }
+
+    @Override
+    public List<CartResponse> getAll() {
+        List<Cart> cartList = cartRepository.findAll();
+        return Utilities.copyProperties(cartList, CartResponse.class);
     }
 
     @Override

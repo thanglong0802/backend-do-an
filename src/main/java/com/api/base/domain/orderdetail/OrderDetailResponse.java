@@ -22,6 +22,4 @@ public class OrderDetailResponse {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    private Double totalPrice;
-
 }

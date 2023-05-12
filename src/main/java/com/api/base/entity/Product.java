@@ -1,6 +1,7 @@
 package com.api.base.entity;
 
 import com.api.base.utils.enumerate.ProductStatus;
+import io.micrometer.core.annotation.Counted;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,7 +17,9 @@ public class Product extends BaseEntity {
 
     @Column(name = "category_id")
     private Long categoriesId;
-    private String name;
+
+    @Column(name = "name_product")
+    private String nameProduct;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)

@@ -25,7 +25,4 @@ public class OrderDetail {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @Column(name = "total_price")
-    private Double totalPrice;
-
 }
