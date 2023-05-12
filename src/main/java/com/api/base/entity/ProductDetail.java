@@ -21,4 +21,7 @@ public class ProductDetail extends BaseEntity {
 
     @Column(name = "attribute_value")
     private Long attributeValue;
+
+    @Column(name = "product_id")
+    private Long productID;
 }

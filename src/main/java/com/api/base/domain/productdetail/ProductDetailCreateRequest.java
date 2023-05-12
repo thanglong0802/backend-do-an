@@ -20,7 +20,11 @@ public class ProductDetailCreateRequest {
     @NotNull
     private Long attributeId;
 
-    @ApiModelProperty(name = "giá trị thuộc tính")
+    @ApiModelProperty(name = "Giá trị thuộc tính")
     @NotNull
     private Long attributeValue;
+
+    @ApiModelProperty(name = "ID sản phẩm")
+    @NotNull
+    private Long productID;
 }

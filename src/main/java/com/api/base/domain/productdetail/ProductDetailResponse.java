@@ -11,8 +11,10 @@ import java.time.Instant;
 @ToString
 public class ProductDetailResponse {
 
+    private Long id;
     private Long categoryId;
     private Long attributeId;
     private Long attributeValue;
+    private Long productID;
 
 }

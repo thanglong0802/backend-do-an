@@ -20,6 +20,7 @@ public class ProductResponse {
     private String nameProduct;
     private ProductStatus status;
     private Double price;
+    private Double promotionalPrice;
     private Integer quantity;
     private String description;
     private String use;

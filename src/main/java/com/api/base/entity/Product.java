@@ -21,6 +21,9 @@ public class Product extends BaseEntity {
     @Column(name = "name_product")
     private String nameProduct;
 
+    @Column(name = "promotional_price")
+    private Double promotionalPrice;
+
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private ProductStatus status;

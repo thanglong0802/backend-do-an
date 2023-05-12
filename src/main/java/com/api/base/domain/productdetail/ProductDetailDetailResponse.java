@@ -19,5 +19,6 @@ public class ProductDetailDetailResponse {
     private Long categoryId;
     private Long attributeId;
     private Long attributeValue;
+    private Long productID;
 
 }
