@@ -25,6 +25,11 @@ public class ProductImageController {
         this.productImageService = productImageService;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<List<ProductImageResponse>> findByProductId(@PathVariable Long id) {
+        return ResponseEntity.ok(productImageService.findByProductId(id));
+    }
+
     @ApiOperation(value = "Create new")
     @PostMapping
     public ResponseEntity<ProductImageResponse> insert(@Valid @RequestBody ProductImageCreateRequest request) {

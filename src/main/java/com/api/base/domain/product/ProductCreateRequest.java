@@ -32,7 +32,7 @@ public class ProductCreateRequest {
     @ApiModelProperty(value = "Giá sản phẩm")
     private Double price;
 
-    private Double promotionalPrice;
+    private Integer promotionalPrice;
 
     @NotNull
     @ApiModelProperty(value = "Số lượng sản phẩm")

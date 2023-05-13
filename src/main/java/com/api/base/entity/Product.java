@@ -22,7 +22,7 @@ public class Product extends BaseEntity {
     private String nameProduct;
 
     @Column(name = "promotional_price")
-    private Double promotionalPrice;
+    private Integer promotionalPrice;
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
