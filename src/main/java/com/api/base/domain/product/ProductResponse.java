@@ -18,7 +18,7 @@ public class ProductResponse {
     private Instant updatedAt;
     private Long categoriesId;
     private String nameProduct;
-    private ProductStatus status;
+    private Integer status;
     private Double price;
     private Integer promotionalPrice;
     private Integer quantity;

@@ -25,8 +25,8 @@ public class Product extends BaseEntity {
     private Integer promotionalPrice;
 
     @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private ProductStatus status;
+//    @Enumerated(EnumType.STRING)
+    private Integer status;
 
     private Double price;
     private Integer quantity;

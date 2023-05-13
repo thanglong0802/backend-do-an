@@ -26,7 +26,7 @@ public class ProductCreateRequest {
 
     @NotNull
     @ApiModelProperty(value = "Trạng thái sản phẩm")
-    private ProductStatus status;
+    private Integer status;
 
     @NotNull
     @ApiModelProperty(value = "Giá sản phẩm")
