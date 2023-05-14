@@ -15,14 +15,17 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "order_detail_id")
+    private String orderDetailId;
+
     @Column(name = "cart_id")
     private Long cartId;
 
-    @Column(name = "customer_id")
-    private Long customerId;
+    @Column(name = "phone_number_customer")
+    private String phoneNumber;
 
     @Column(name = "status")
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+//    @Enumerated(EnumType.STRING)
+    private String status;
 
 }

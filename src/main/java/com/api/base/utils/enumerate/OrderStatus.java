@@ -1,5 +1,8 @@
 package com.api.base.utils.enumerate;
 
+import lombok.Getter;
+
+@Getter
 public enum OrderStatus {
     CHO_DUYET("Chờ duyệt"),
     DA_XAC_NHAN("Đã xác nhận"),

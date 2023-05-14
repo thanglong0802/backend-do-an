@@ -1,5 +1,6 @@
 package com.api.base.controller;
 
+import com.api.base.domain.orderdetail.OrderDetailCartRequest;
 import com.api.base.domain.orderdetail.OrderDetailCreateRequest;
 import com.api.base.domain.orderdetail.OrderDetailResponse;
 import com.api.base.service.OrderDetailService;
@@ -28,5 +29,10 @@ public class OrderDetailController {
     @PostMapping
     public ResponseEntity<OrderDetailResponse> insert(@Valid @RequestBody OrderDetailCreateRequest request) {
         return ResponseEntity.ok(orderDetailService.insert(request));
+    }
+
+    @PostMapping("/new-cart")
+    public ResponseEntity<OrderDetailResponse> insertNewOrder(@RequestBody OrderDetailCartRequest request) {
+        return ResponseEntity.ok(orderDetailService.insertNewCart(request));
     }
 }

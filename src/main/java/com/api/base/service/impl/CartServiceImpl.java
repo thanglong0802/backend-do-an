@@ -5,6 +5,7 @@ import com.api.base.domain.cart.CartDetailResponse;
 import com.api.base.domain.cart.CartResponse;
 import com.api.base.entity.Cart;
 import com.api.base.repository.CartRepository;
+import com.api.base.repository.CustomerRepository;
 import com.api.base.service.CartService;
 import com.api.base.service.CommonService;
 import com.api.base.utils.Utilities;

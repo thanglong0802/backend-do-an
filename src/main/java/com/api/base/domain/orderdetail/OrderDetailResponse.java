@@ -1,12 +1,8 @@
 package com.api.base.domain.orderdetail;
 
-import com.api.base.utils.enumerate.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 @Getter
 @Setter
@@ -17,9 +13,11 @@ public class OrderDetailResponse {
 
     private Long cartId;
 
-    private Long customerId;
+    private String orderDetailId;
 
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    private String phoneNumber;
+
+//    @Enumerated(EnumType.STRING)
+    private String status;
 
 }
