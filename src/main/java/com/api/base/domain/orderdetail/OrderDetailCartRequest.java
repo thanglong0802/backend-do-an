@@ -14,4 +14,8 @@ public class OrderDetailCartRequest {
     private CartCreateRequest cartCreateRequest;
     @NotBlank
     private String phoneNumber;
+    @NotBlank
+    private String nameCustomer;
+    @NotBlank
+    private String address;
 }

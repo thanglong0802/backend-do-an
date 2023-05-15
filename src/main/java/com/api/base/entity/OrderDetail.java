@@ -21,6 +21,12 @@ public class OrderDetail {
     @Column(name = "cart_id")
     private Long cartId;
 
+    @Column(name = "customer_name")
+    private String nameCustomer;
+
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "phone_number_customer")
     private String phoneNumber;
 
