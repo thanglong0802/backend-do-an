@@ -30,6 +30,7 @@ public class ProductUpdateFullRequest {
     @ApiModelProperty(value = "Giá sản phẩm")
     private Double price;
 
+    @ApiModelProperty(value = "Số % khuyến mãi")
     private Integer promotionalPrice;
 
     @NotNull

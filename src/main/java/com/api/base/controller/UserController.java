@@ -36,9 +36,9 @@ public class UserController {
         return ResponseEntity.ok(userService.search(request, pageRequest));
     }
 
-    @GetMapping("/login")
-    public ResponseEntity<UserLogin> login(@Valid @RequestParam String username, @Valid @RequestParam String password) {
-        return ResponseEntity.ok(userService.login(username, password));
+    @PostMapping("/login")
+    public ResponseEntity<UserLogin> login(@Valid @RequestBody UserLogin login) {
+        return ResponseEntity.ok(userService.login(login));
     }
 
     @PostMapping

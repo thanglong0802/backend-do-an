@@ -47,7 +47,7 @@ public class ProductValueServiceImpl implements ProductValueService {
 
     @Override
     public ProductValueResponse update(ProductValueUpdateRequest request) {
-        ProductValue productValue = Utilities.returnNullInException(() -> valueRepository.findById(request.getProductAttributeId()).get());
+        ProductValue productValue = Utilities.returnNullInException(() -> valueRepository.findById(request.getId()).get());
         if (ObjectUtils.allNull(productValue)) {
             throw new BusinessException(MessageCode.ERR_404.name(), messageUtil.getMessage(MessageCode.BASE_05001.name()), "Product Attribute ID: " + request.getProductAttributeId());
         }

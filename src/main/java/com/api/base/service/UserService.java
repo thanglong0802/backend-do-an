@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
     public UserResponse insert(UserCreateRequest request);
     PagingResponse search(UserRequest request, Pageable pageRequest);
-    UserLogin login(String username, String password);
+    UserLogin login(UserLogin login);
     UserResponse update(UserUpdateRequest request);
     Boolean delete(String userName);
     Boolean deleteAll(List<String> userName);

@@ -84,16 +84,16 @@ public class UserServiceImpl extends EmailValidator implements UserService {
     }
 
     @Override
-    public UserLogin login(String username, String password) {
-        User userNameLogin = userRepository.findUserByUsername(username);
-        String passwordUser = userNameLogin.getPassword();
+    public UserLogin login(UserLogin login) {
+        User userNameLogin = userRepository.findUserByUsername(login.getUsername());
         if (ObjectUtils.allNull(userNameLogin)) {
             throw new BusinessException("User Not Found");
         }
-        if (passwordUser.equals(password)) {
-            return Utilities.copyProperties(userNameLogin, UserLogin.class);
+        String passwordUser = userNameLogin.getPassword();
+        if (!passwordUser.equals(login.getPassword())) {
+            throw new BusinessException("Password Not Found");
         }
-        throw new BusinessException("Password Not Found");
+        return Utilities.copyProperties(userNameLogin, UserLogin.class);
     }
 
     @Override
