@@ -13,6 +13,7 @@ import com.api.base.utils.MessageUtil;
 import com.api.base.utils.SimpleQueryBuilder;
 import com.api.base.utils.Utilities;
 import com.api.base.utils.enumerate.MessageCode;
+import com.api.base.utils.enumerate.ProductStatus;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,7 @@ public class ProductServiceImpl implements ProductService {
         }
         // thêm mới sản phẩm
         Product product = Utilities.copyProperties(request, Product.class);
+        product.setStatus(ProductStatus.CON_HANG.getValue());
         productRepository.save(product);
         return Utilities.copyProperties(product, ProductResponse.class);
     }

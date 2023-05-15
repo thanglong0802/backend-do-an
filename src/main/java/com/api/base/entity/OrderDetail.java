@@ -1,6 +1,5 @@
 package com.api.base.entity;
 
-import com.api.base.utils.enumerate.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 

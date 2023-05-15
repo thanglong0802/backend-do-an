@@ -26,7 +26,7 @@ public class Product extends BaseEntity {
 
     @Column(name = "status")
 //    @Enumerated(EnumType.STRING)
-    private Integer status;
+    private String status;
 
     private Double price;
     private Integer quantity;
