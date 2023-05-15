@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @ToString
-public class ProductUpdateRequest extends ProductCreateRequest {
+public class ProductUpdateRequest extends ProductUpdateFullRequest {
     @NotNull
     private Long id;
 }
