@@ -1,9 +1,5 @@
 package com.api.base.exception;
 
-/**
- * @author BacDV
- *
- */
 public class BadAuthenticationException extends RuntimeException {
     private static final long serialVersionUID = 1L;
     private final String code;

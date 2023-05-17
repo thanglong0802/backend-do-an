@@ -25,10 +25,6 @@ import com.api.base.security.AuthenticationEntry;
 import com.api.base.security.SecurityConfigurer;
 import com.api.base.security.TokenProvider;
 
-/**
- * @author BacDV
- *
- */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)

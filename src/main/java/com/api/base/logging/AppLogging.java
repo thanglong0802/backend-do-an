@@ -22,10 +22,6 @@ import org.springframework.stereotype.Component;
 
 import com.api.base.utils.enumerate.MessageCode;
 
-/**
- * @author BacDV
- *
- */
 @Aspect
 @Component
 public class AppLogging {

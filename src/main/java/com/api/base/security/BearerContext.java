@@ -2,10 +2,6 @@ package com.api.base.security;
 
 import java.io.Serializable;
 
-/**
- * @author BacDV
- *
- */
 public class BearerContext implements Serializable {
     private static final long serialVersionUID = 1L;
 

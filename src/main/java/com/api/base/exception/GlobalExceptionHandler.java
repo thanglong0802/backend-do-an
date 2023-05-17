@@ -19,10 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.api.base.utils.MessageUtil;
 import com.api.base.utils.enumerate.MessageCode;
 
-/**
- * @author BacDV
- *
- */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

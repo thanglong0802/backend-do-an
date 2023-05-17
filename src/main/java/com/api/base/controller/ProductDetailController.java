@@ -30,6 +30,11 @@ public class ProductDetailController {
         return productDetailService.searchProductByCategoryAndAttribute();
     }
 
+    @GetMapping("/{id}")
+    public List<ProductDetailAttributeOfProductResponse> attributeOfProductResponseList(@PathVariable Long id) {
+        return productDetailService.attributeOfProduct(id);
+    }
+
     @PostMapping
     public ResponseEntity<ProductDetailResponse> insert(@Valid @RequestBody ProductDetailCreateRequest request) {
         return ResponseEntity.ok(productDetailService.insert(request));

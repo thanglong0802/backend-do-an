@@ -25,10 +25,6 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-/**
- * @author BacDV
- *
- */
 @Component
 public class TokenProvider {
     private static final Logger log = LoggerFactory.getLogger(TokenProvider.class);

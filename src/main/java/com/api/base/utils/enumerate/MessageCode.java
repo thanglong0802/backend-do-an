@@ -3,10 +3,6 @@
  */
 package com.api.base.utils.enumerate;
 
-/**
- * @author BacDV
- *
- */
 public enum MessageCode {
     ERR_400,
     ERR_401,

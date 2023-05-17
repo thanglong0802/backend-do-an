@@ -24,10 +24,6 @@ import com.api.base.utils.enumerate.MessageCode;
 import com.api.base.security.BearerContextHolder;
 import com.api.base.security.TokenProvider;
 
-/**
- * @author BacDV
- *
- */
 @Component
 public class AppFilter extends OncePerRequestFilter {
 

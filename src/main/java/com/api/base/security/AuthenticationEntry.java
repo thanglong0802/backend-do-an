@@ -14,10 +14,6 @@ import org.springframework.stereotype.Component;
 
 import com.api.base.utils.enumerate.MessageCode;
 
-/**
- * @author BacDV
- *
- */
 @Component
 public class AuthenticationEntry implements AuthenticationEntryPoint {
 

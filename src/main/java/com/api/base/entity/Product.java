@@ -21,6 +21,12 @@ public class Product extends BaseEntity {
     @Column(name = "name_product")
     private String nameProduct;
 
+    @Column(name = "brand")
+    private String brand;
+
+    @Column(name = "bao_hanh")
+    private String baoHanh;
+
     @Column(name = "promotional_price")
     private Integer promotionalPrice;
 

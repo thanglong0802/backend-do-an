@@ -14,4 +14,10 @@ import javax.persistence.Table;
 public class ProductAttribute extends BaseEntity {
     @Column(name = "name_attribute")
     private String nameAttribute;
+
+    @Column(name = "is_show")
+    private Integer isShow;
+
+    @Column(name = "sort")
+    private Integer sort;
 }

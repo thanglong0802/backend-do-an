@@ -16,4 +16,6 @@ public class ProductAttributeResponse {
     private String updatedBy;
     private Instant updatedAt;
     private String nameAttribute;
+    private Integer isShow;
+    private Integer sort;
 }

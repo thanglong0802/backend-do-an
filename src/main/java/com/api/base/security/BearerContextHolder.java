@@ -1,9 +1,5 @@
 package com.api.base.security;
 
-/**
- * @author BacDV
- *
- */
 public abstract class BearerContextHolder {
 
     private BearerContextHolder() {

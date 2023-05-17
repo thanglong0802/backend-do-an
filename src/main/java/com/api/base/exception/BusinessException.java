@@ -3,10 +3,6 @@ package com.api.base.exception;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author BacDV
- *
- */
 public class BusinessException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 

@@ -10,10 +10,6 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-/**
- * @author BacDV
- *
- */
 public class HttpServletRequestHelper extends HttpServletRequestWrapper {
     private final Map<String, String> customHeaders;
 

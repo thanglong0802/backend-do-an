@@ -89,4 +89,26 @@ public class ProductDetailServiceImpl implements ProductDetailService {
         return result;
     }
 
+    @Override
+    public List<ProductDetailAttributeOfProductResponse> attributeOfProduct(Long id) {
+        List<ProductDetailAttributeOfProductResponse> result = new ArrayList<>();
+        String sql = String.format("SELECT pda.id, name_attribute, name_value, pda.product_id, pt.is_show, pt.sort FROM tbl_product_detail_attribute pda \n" +
+                "join tbl_product_attribute pt on pt.id = pda.attribute_id \n" +
+                "join tbl_product_value pv on pv.id = pda.attribute_value \n" +
+                "where pda.product_id = %d and pt.is_show = 1 ORDER BY pt.sort asc", id);
+        Map<String, Object> params = new HashMap<>();
+        List<Tuple> tuples = commonService.executeGetListTuple(sql, params);
+        for (Tuple item : tuples) {
+            ProductDetailAttributeOfProductResponse attribute = new ProductDetailAttributeOfProductResponse();
+            attribute.setId(Utilities.returnNullInException(() -> item.get("id", BigInteger.class).longValue()));
+            attribute.setNameAttribute(item.get("name_attribute", String.class));
+            attribute.setNameValue(item.get("name_value", String.class));
+            attribute.setProductID(Utilities.returnNullInException(() -> item.get("product_id", BigInteger.class).longValue()));
+            attribute.setIsShow(item.get("is_show", Integer.class));
+            attribute.setSort(item.get("sort", Integer.class));
+            result.add(attribute);
+        }
+        return result;
+    }
+
 }

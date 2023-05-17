@@ -7,10 +7,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.api.base.filter.AppFilter;
 
-/**
- * @author BacDV
- *
- */
 public class SecurityConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
 
     private TokenProvider tokenProvider;

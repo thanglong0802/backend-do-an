@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -14,4 +15,8 @@ public class ProductAttributeCreateRequest {
     @NotBlank
     @ApiModelProperty(value = "Tên thuộc tính")
     private String nameAttribute;
+
+    @NotNull
+    @ApiModelProperty(value = "Hiển thị thuộc tính")
+    private Integer isShow;
 }
