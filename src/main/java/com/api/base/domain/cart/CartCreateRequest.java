@@ -13,5 +13,7 @@ public class CartCreateRequest {
     private Long productId;
     @NotNull
     private Integer quantityProduct;
+    @NotNull
+    private Double totalPrice;
 
 }

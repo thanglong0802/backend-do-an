@@ -57,6 +57,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setOrderDetailId(generateRandomString());
         orderDetail.setCartId(cart.getId());
+        orderDetail.setTotalPrice(cart.getTotalPrice());
         orderDetail.setNameCustomer(request.getNameCustomer());
         orderDetail.setAddress(request.getAddress());
         orderDetail.setPhoneNumber(request.getPhoneNumber());

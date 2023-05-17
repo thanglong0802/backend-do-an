@@ -20,6 +20,9 @@ public class OrderDetail {
     @Column(name = "cart_id")
     private Long cartId;
 
+    @Column(name = "total_price_product")
+    private Double totalPrice;
+
     @Column(name = "customer_name")
     private String nameCustomer;
 
