@@ -3,7 +3,10 @@ package com.api.base.service.impl;
 import com.api.base.domain.productdetail.*;
 import com.api.base.entity.ProductDetail;
 import com.api.base.exception.BusinessException;
+import com.api.base.repository.ProductAttributeRepository;
 import com.api.base.repository.ProductDetailRepository;
+import com.api.base.repository.ProductRepository;
+import com.api.base.repository.ProductValueRepository;
 import com.api.base.service.CommonService;
 import com.api.base.service.ProductDetailService;
 import com.api.base.utils.MessageUtil;
@@ -42,6 +45,12 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
     @Override
     public ProductDetailResponse insert(ProductDetailCreateRequest request) {
+        List<ProductDetail> productDetailResponseList = productDetailRepository.findAll();
+        for (ProductDetail item : productDetailResponseList) {
+            if (item.getProductID() == request.getProductID() && item.getAttributeId() == request.getAttributeId() && item.getAttributeValue() == request.getAttributeValue()) {
+                throw new BusinessException("Product, Attribute, Value Exist");
+            }
+        }
         ProductDetail productDetail = Utilities.copyProperties(request, ProductDetail.class);
         productDetailRepository.save(productDetail);
         return Utilities.copyProperties(productDetail, ProductDetailResponse.class);
