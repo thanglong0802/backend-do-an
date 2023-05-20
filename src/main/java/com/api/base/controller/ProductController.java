@@ -28,7 +28,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @ApiOperation(value = "Get list Product")
+    @ApiOperation(value = "Tìm kiếm sản phẩm theo tên, nếu không truyền tham số thì lấy ra tất cả")
     @GetMapping
     public ResponseEntity<PagingResponse> search(ProductRequest request, PagingRequest pagingRequest) {
         logger.info("[Filters] {}", request);
@@ -36,35 +36,35 @@ public class ProductController {
         return ResponseEntity.ok(productService.search(request, pageable));
     }
 
-    @ApiOperation(value = "Create new")
+    @ApiOperation(value = "Tạo mới sản phẩm")
     @PostMapping
     public ResponseEntity<ProductResponse> insert(@Valid @RequestBody ProductCreateRequest request) {
         logger.info("[Create new] {}", request);
         return ResponseEntity.ok(productService.insert(request));
     }
 
-    @ApiOperation(value = "Update")
+    @ApiOperation(value = "Cập nhật sản phẩm")
     @PutMapping
     public ResponseEntity<ProductResponse> update(@Valid @RequestBody ProductUpdateRequest request) {
         logger.info("[Update] {}");
         return ResponseEntity.ok(productService.update(request));
     }
 
-    @ApiOperation(value = "Get by ID")
+    @ApiOperation(value = "Chi tiết sản phẩm theo ID")
     @GetMapping("/{id}")
     public ResponseEntity<ProductDetailResponse> detail(@PathVariable Long id) {
         logger.info("[Get by ID] {}");
         return ResponseEntity.ok(productService.detail(id));
     }
 
-    @ApiOperation(value = "Delete by ID")
+    @ApiOperation(value = "Xóa sản phẩm theo ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         logger.info("[Delete by ID] {}");
         return ResponseEntity.ok(productService.delete(id));
     }
 
-    @ApiOperation(value = "Delete by list")
+    @ApiOperation(value = "Xóa sản phẩm theo danh sách iD")
     @DeleteMapping
     public ResponseEntity<Boolean> deleteAll(@RequestParam List<Long> ids) {
         logger.info("[Delete by quantity] {}");

@@ -32,7 +32,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @ApiOperation(value = "Get list Customer")
+    @ApiOperation(value = "Tìm kiếm khách hàng theo tên, nếu không truyền tham số thì lấy ra tất cả khách hàng")
     @GetMapping
     public ResponseEntity<PagingResponse> search(CustomerRequest request, PagingRequest pagingRequest) {
         logger.info("[Filters] {}", request);
@@ -40,18 +40,21 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.search(request, pageRequest));
     }
 
+    @ApiOperation(value = "Tạo mới khách hàng")
     @PostMapping
     public ResponseEntity<CustomerResponse> insert(@Valid @RequestBody CustomerCreateRequest request) {
         logger.info("[Create new customer] {}");
         return ResponseEntity.ok(customerService.insert(request));
     }
 
+    @ApiOperation(value = "Cập nhật khách hàng")
     @PutMapping
     public ResponseEntity<CustomerResponse> update(@Valid @RequestBody CustomerUpdateRequest request) {
         logger.info("[Update customer] {}");
         return ResponseEntity.ok(customerService.update(request));
     }
 
+    @ApiOperation(value = "Xóa khách hàng theo ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         logger.info("[Delete customer] {}");

@@ -30,7 +30,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @ApiOperation(value = "Get list Category")
+    @ApiOperation(value = "Tìm kiếm danh mục theo tên, nếu không truyền tham số sẽ hiển thị tất cả danh mục")
     @GetMapping("/search")
     public ResponseEntity<PagingResponse> search(CategoryRequest categoryRequest, PagingRequest pagingRequest) {
         logger.info("[Filter] {}", categoryRequest);
@@ -38,53 +38,53 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.search(categoryRequest, pageable));
     }
 
-    @ApiOperation("Get All parent category")
+    @ApiOperation("Lấy ra tất cả danh mục cha")
     @GetMapping
     public List<CategoryResponse> getAll() {
         return categoryService.getParentCategory();
     }
 
-    @ApiOperation("Get All Products In The Category")
+    @ApiOperation("Lấy ra tất cả sản phẩm của danh mục đó")
     @GetMapping("/all-product/{id}")
     public List<CategoryResponseProduct> getAllProductsInTheCategory(@PathVariable Long id) {
         return categoryService.getAllProductsInTheCategory(id);
     }
 
-    @ApiOperation("Get child category by parent category")
+    @ApiOperation("Lấy ra tất cả danh mục con theo danh mục cha")
     @GetMapping("/{id}")
     public List<CategoryResponse> directoryList(@PathVariable Long id) {
         return categoryService.directoryList(id);
     }
 
-    @ApiOperation(value = "Create new")
+    @ApiOperation(value = "Tạo mới danh mục")
     @PostMapping
     public ResponseEntity<CategoryResponse> insert(@Valid @RequestBody CategoryCreateRequest request) {
         logger.info("[Create new] {}", request);
         return ResponseEntity.ok(categoryService.insert(request));
     }
 
-    @ApiOperation(value = "Get by ID")
+    @ApiOperation(value = "Lấy ra chi tiết của sản phẩm")
     @GetMapping("/detail/{id}")
     public ResponseEntity<CategoryDetailResponse> detail(@PathVariable Long id) {
         logger.info("[Get by ID] {}");
         return ResponseEntity.ok(categoryService.detail(id));
     }
 
-    @ApiOperation(value = "Update")
+    @ApiOperation(value = "Cập nhật danh mục")
     @PutMapping
     public ResponseEntity<CategoryResponse> update(@Valid @RequestBody CategoryUpdateRequest request) {
         logger.info("[Update] {}");
         return ResponseEntity.ok(categoryService.update(request));
     }
 
-    @ApiOperation(value = "Delete by ID")
+    @ApiOperation(value = "Xóa danh mục theo ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         logger.info("[Delete by ID] {}");
         return ResponseEntity.ok(categoryService.delete(id));
     }
 
-    @ApiOperation(value = "Delete by list")
+    @ApiOperation(value = "Xóa nhiều danh mục theo danh sách ID")
     @DeleteMapping
     public ResponseEntity<Boolean> deleteAll(@RequestParam List<Long> ids) {
         logger.info("[Delete by list] {}");

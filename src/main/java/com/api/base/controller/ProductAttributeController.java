@@ -31,7 +31,7 @@ public class ProductAttributeController {
         this.productAttributeService = productAttributeService;
     }
 
-    @ApiOperation(value = "Get list Product Attribute")
+    @ApiOperation(value = "Tìm thuộc tính sản phẩm theo tên, nếu không truyền tham số thì lấy ra tất cả")
     @GetMapping
     public ResponseEntity<PagingResponse> search(ProductAttributeRequest request, PagingRequest pagingRequest) {
         logger.info("[Filters] {}", request);
@@ -39,35 +39,35 @@ public class ProductAttributeController {
         return ResponseEntity.ok(productAttributeService.search(request, pageable));
     }
 
-    @ApiOperation("Create new Product Attribute")
+    @ApiOperation("Tạo mới thuộc tính sản phẩm")
     @PostMapping
     public ResponseEntity<ProductAttributeResponse> insert(@Valid @RequestBody ProductAttributeCreateRequest request) {
         logger.info("[Create new] {}", request);
         return ResponseEntity.ok(productAttributeService.insert(request));
     }
 
-    @ApiOperation("Get detail Product Attribute By ID")
+    @ApiOperation("Chi tiết thuộc tính sản phẩm")
     @GetMapping("/{id}")
     public ResponseEntity<ProductAttributeResponse> detail(@PathVariable Long id) {
         logger.info("[Get detail product attribute by ID] {}");
         return ResponseEntity.ok(productAttributeService.detail(id));
     }
 
-    @ApiOperation("Update Product Attribute")
+    @ApiOperation("Cập nhật thuộc tính sản phẩm")
     @PutMapping
     public ResponseEntity<ProductAttributeResponse> update(@Valid @RequestBody ProductAttributeUpdateRequest request) {
         logger.info("[Update] {}");
         return ResponseEntity.ok(productAttributeService.update(request));
     }
 
-    @ApiOperation("Delete product attribute by ID")
+    @ApiOperation("Xóa thuộc tính sản phẩm theo ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         logger.info("[Delete Product attribute by ID] {}");
         return ResponseEntity.ok(productAttributeService.delete(id));
     }
 
-    @ApiOperation("Delete product attribute by list ID")
+    @ApiOperation("Xóa thuộc tính sản phẩm theo danh sách ID")
     @DeleteMapping
     public ResponseEntity<Boolean> deleteAll(@RequestParam List<Long> ids) {
         logger.info("[Delete product attribute by list id] {}");

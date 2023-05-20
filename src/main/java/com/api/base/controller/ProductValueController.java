@@ -33,21 +33,21 @@ public class ProductValueController {
         this.productValueService = productValueService;
     }
 
-    @ApiOperation("Create new Product Value")
+    @ApiOperation("Tạo mới giá trị sản phẩm")
     @PostMapping
     public ResponseEntity<ProductValueResponse> insert(@Valid @RequestBody ProductValueCreateRequest request) {
         logger.info("[Create new] {}", request);
         return ResponseEntity.ok(productValueService.insert(request));
     }
 
-    @ApiOperation("Update product value")
+    @ApiOperation("Cập nhật giá trị sản phẩm")
     @PutMapping
     public ResponseEntity<ProductValueResponse> update(@Valid @RequestBody ProductValueUpdateRequest request) {
         logger.info("[Update product value] {}");
         return ResponseEntity.ok(productValueService.update(request));
     }
 
-    @ApiOperation("Get list product value")
+    @ApiOperation(" Tìm kiếm giá trị sản phẩm theo tên, nếu không truyền tham số thì lấy tất cả")
     @GetMapping
     public ResponseEntity<PagingResponse> search(ProductValueRequest request, PagingRequest pagingRequest) {
         logger.info("Filters] {}");
@@ -55,14 +55,14 @@ public class ProductValueController {
         return ResponseEntity.ok(productValueService.search(request, pageable));
     }
 
-    @ApiOperation("Delete product value by ID")
+    @ApiOperation("Xóa giá trị sản phẩm theo ID")
     @DeleteMapping("/{id}")
     public  ResponseEntity<Boolean> delete(@PathVariable Long id) {
         logger.info("[Delete Product value by ID] {}");
         return ResponseEntity.ok(productValueService.delete(id));
     }
 
-    @ApiOperation("Delete product value by list ID")
+    @ApiOperation("Xóa giá trị sản phẩm theo danh sách ID")
     @DeleteMapping
     public ResponseEntity<Boolean> deleteAll(@RequestParam List<Long> ids) {
         logger.info("[Delete product value by list ID] {}");

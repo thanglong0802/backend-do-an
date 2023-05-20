@@ -25,33 +25,34 @@ public class ProductImageController {
         this.productImageService = productImageService;
     }
 
+    @ApiOperation(value = "Lấy ảnh theo ID")
     @GetMapping("/{id}")
     public ResponseEntity<List<ProductImageResponse>> findByProductId(@PathVariable Long id) {
         return ResponseEntity.ok(productImageService.findByProductId(id));
     }
 
-    @ApiOperation(value = "Create new")
+    @ApiOperation(value = "Tạo mới ảnh cho sản phẩm")
     @PostMapping
     public ResponseEntity<ProductImageResponse> insert(@Valid @RequestBody ProductImageCreateRequest request) {
         logger.info("[Create new] {}", request);
         return ResponseEntity.ok(productImageService.insert(request));
     }
 
-    @ApiOperation(value = "Update")
+    @ApiOperation(value = "Cập nhật lại ảnh cho sản phẩm")
     @PutMapping
     public ResponseEntity<ProductImageResponse> update(@Valid @RequestBody ProductImageUpdateRequest request) {
         logger.info("[Update] {}", request);
         return ResponseEntity.ok(productImageService.update(request));
     }
 
-    @ApiOperation(value = "Delete by ID")
+    @ApiOperation(value = "Xóa ảnh theo ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id) {
         logger.info("[Delete by ID] {}");
         return ResponseEntity.ok(productImageService.delete(id));
     }
 
-    @ApiOperation(value = "Delete ID list")
+    @ApiOperation(value = "Xóa ảnh theo danh sách ID")
     @DeleteMapping
     public ResponseEntity<Boolean> deleteAll(@RequestParam List<Long> ids) {
         logger.info("[Delete ID list] {}");

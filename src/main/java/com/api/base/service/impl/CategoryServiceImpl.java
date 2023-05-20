@@ -88,6 +88,7 @@ public class CategoryServiceImpl implements CategoryService {
             attribute.setStatus(ProductStatus.CON_HANG);
             attribute.setPrice(item.get("price", Double.class));
             attribute.setQuantity(item.get("quantity", Integer.class));
+            attribute.setDescription(item.get("description", String.class));
             attribute.setUse((item.get("use", String.class)));
             attribute.setProducer(item.get("producer", String.class));
             attribute.setWhereProduction(item.get("where_production", String.class));
