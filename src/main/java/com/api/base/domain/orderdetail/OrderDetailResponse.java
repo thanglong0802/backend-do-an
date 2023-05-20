@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Column;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -18,6 +19,8 @@ public class OrderDetailResponse {
     private String orderDetailId;
 
     private String nameCustomer;
+
+    private Timestamp dateOrder;
 
     private String address;
 

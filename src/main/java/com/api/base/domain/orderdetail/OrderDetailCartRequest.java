@@ -4,7 +4,6 @@ import com.api.base.domain.cart.CartCreateRequest;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor

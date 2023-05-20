@@ -17,6 +17,8 @@ import com.api.base.utils.enumerate.OrderStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
 
@@ -59,6 +61,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         orderDetail.setCartId(cart.getId());
         orderDetail.setTotalPrice(cart.getTotalPrice());
         orderDetail.setNameCustomer(request.getNameCustomer());
+        orderDetail.setDateOrder(LocalDateTime.now());
         orderDetail.setAddress(request.getAddress());
         orderDetail.setPhoneNumber(request.getPhoneNumber());
         orderDetail.setStatus(OrderStatus.CHO_DUYET.getValue());
