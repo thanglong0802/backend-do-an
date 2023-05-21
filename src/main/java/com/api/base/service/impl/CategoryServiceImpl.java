@@ -72,20 +72,20 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryResponseProduct> getAllProductsInTheCategory(Long id) {
         List<CategoryResponseProduct> result = new ArrayList<>();
-        String sql = String.format("WITH RECURSIVE cte AS " +
-                "(SELECT id, created_at, created_by, updated_at, updated_by, name_category, parent_id FROM tbl_category WHERE id = %d " +
-                "UNION ALL " +
-                "SELECT c.id, c.created_at, c.created_by, c.updated_at, c.updated_by, c.name_category, c.parent_id FROM tbl_category c " +
-                "JOIN cte ON c.parent_id = cte.id) " +
-                "SELECT p.id, p.category_id, p.status, p.price, p.quantity, p.description, p.use, p.producer, p.where_production, p.name_product, p.created_at, p.created_by, p.updated_at, p.updated_by, c.name_category, c.parent_id FROM tbl_product p " +
-                "JOIN cte c ON p.category_id = c.id", id);
+        String sql = String.format("WITH RECURSIVE cte AS \n" +
+                                        "(SELECT id, created_at, created_by, updated_at, updated_by, name_category, parent_id FROM tbl_category WHERE id = %d \n" +
+                                        "UNION ALL \n" +
+                                        "SELECT c.id, c.created_at, c.created_by, c.updated_at, c.updated_by, c.name_category, c.parent_id FROM tbl_category c \n" +
+                                        "JOIN cte ON c.parent_id = cte.id) \n" +
+                                        "SELECT p.id, p.category_id, p.status, p.price, p.quantity, p.description, p.use, p.producer, p.where_production, p.name_product, p.bao_hanh, p.brand, p.created_at, p.created_by, p.updated_at, p.updated_by, ct.name_category, ct.parent_id FROM tbl_product p \n" +
+                                        "JOIN cte ct ON p.category_id = ct.id", id);
         Map<String, Object> params = new HashMap<>();
         List<Tuple> tuples = commonService.executeGetListTuple(sql, params);
         for (Tuple item : tuples) {
             CategoryResponseProduct attribute = new CategoryResponseProduct();
             attribute.setId(Utilities.returnNullInException(() -> item.get("id", BigInteger.class).longValue()));
             attribute.setCategoriesId(Utilities.returnNullInException(() -> item.get("category_id", BigInteger.class).longValue()));
-            attribute.setStatus(ProductStatus.CON_HANG);
+            attribute.setStatus(item.get("status", String.class));
             attribute.setPrice(item.get("price", Double.class));
             attribute.setQuantity(item.get("quantity", Integer.class));
             attribute.setDescription(item.get("description", String.class));
@@ -93,9 +93,11 @@ public class CategoryServiceImpl implements CategoryService {
             attribute.setProducer(item.get("producer", String.class));
             attribute.setWhereProduction(item.get("where_production", String.class));
             attribute.setNameProduct(item.get("name_product", String.class));
+            attribute.setBaoHanh(item.get("bao_hanh", String.class));
+            attribute.setBrand(item.get("brand", String.class));
             attribute.setCreatedAt(((Timestamp) item.get("created_at")).toInstant());
             attribute.setCreatedBy(item.get("created_by", String.class));
-            attribute.setUpdatedAt(((Timestamp) item.get("created_at")).toInstant());
+//            attribute.setUpdatedAt(((Timestamp) item.get("updated_at")).toInstant());
             attribute.setUpdatedBy(item.get("updated_by", String.class));
             attribute.setNameCategory(item.get("name_category", String.class));
             attribute.setParentId(Utilities.returnNullInException(() -> item.get("parent_id", BigInteger.class).longValue()));

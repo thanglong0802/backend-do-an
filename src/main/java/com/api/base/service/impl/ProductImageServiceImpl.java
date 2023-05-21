@@ -28,6 +28,12 @@ public class ProductImageServiceImpl implements ProductImageService {
     }
 
     @Override
+    public List<ProductImageResponse> getAll() {
+        List<ProductImage> res = productImageRepository.findAll();
+        return Utilities.copyProperties(res, ProductImageResponse.class);
+    }
+
+    @Override
     public List<ProductImageResponse> findByProductId(Long id) {
         List<ProductImage> imageList = productImageRepository.findProductImagesByProductId(id);
         return Utilities.copyProperties(imageList, ProductImageResponse.class);

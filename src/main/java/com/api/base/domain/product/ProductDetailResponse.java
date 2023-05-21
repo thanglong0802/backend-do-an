@@ -26,4 +26,6 @@ public class ProductDetailResponse {
     private String use;
     private String producer;
     private String whereProduction;
+    private String brand;
+    private String baoHanh;
 }

@@ -24,9 +24,9 @@ public class ProductCreateRequest {
     @Lob
     private String nameProduct;
 
-//    @NotNull
-//    @ApiModelProperty(value = "Trạng thái sản phẩm")
-//    private String status;
+    @NotNull
+    @ApiModelProperty(value = "Trạng thái sản phẩm")
+    private String status;
 
     @NotNull
     @ApiModelProperty(value = "Giá sản phẩm")
@@ -53,4 +53,10 @@ public class ProductCreateRequest {
     @ApiModelProperty(value = "Nơi sản xuất")
     @Lob
     private String whereProduction;
+
+    @ApiModelProperty(value = "Thương hiệu")
+    private String brand;
+
+    @ApiModelProperty(value = "Bảo hành")
+    private String baoHanh;
 }

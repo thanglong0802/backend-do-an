@@ -63,7 +63,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.insert(request));
     }
 
-    @ApiOperation(value = "Lấy ra chi tiết của sản phẩm")
+    @ApiOperation(value = "Lấy ra chi tiết của danh mục")
     @GetMapping("/detail/{id}")
     public ResponseEntity<CategoryDetailResponse> detail(@PathVariable Long id) {
         logger.info("[Get by ID] {}");
@@ -84,7 +84,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.delete(id));
     }
 
-    @ApiOperation(value = "Xóa nhiều danh mục theo danh sách ID")
+    @ApiOperation(value = "Xóa danh mục theo danh sách ID")
     @DeleteMapping
     public ResponseEntity<Boolean> deleteAll(@RequestParam List<Long> ids) {
         logger.info("[Delete by list] {}");

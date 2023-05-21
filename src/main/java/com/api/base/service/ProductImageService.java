@@ -7,6 +7,7 @@ import com.api.base.domain.productimage.ProductImageUpdateRequest;
 import java.util.List;
 
 public interface ProductImageService {
+    List<ProductImageResponse> getAll();
     List<ProductImageResponse> findByProductId(Long id);
     ProductImageResponse insert(ProductImageCreateRequest request);
     ProductImageResponse update(ProductImageUpdateRequest request);

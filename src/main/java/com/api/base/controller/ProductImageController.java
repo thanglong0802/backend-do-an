@@ -25,6 +25,12 @@ public class ProductImageController {
         this.productImageService = productImageService;
     }
 
+    @ApiOperation(value = "Lấy danh sách ảnh")
+    @GetMapping
+    public ResponseEntity<List<ProductImageResponse>> getAll() {
+        return ResponseEntity.ok(productImageService.getAll());
+    }
+
     @ApiOperation(value = "Lấy ảnh theo ID")
     @GetMapping("/{id}")
     public ResponseEntity<List<ProductImageResponse>> findByProductId(@PathVariable Long id) {

@@ -52,4 +52,10 @@ public class ProductUpdateFullRequest {
     @ApiModelProperty(value = "Nơi sản xuất")
     @Lob
     private String whereProduction;
+
+    @ApiModelProperty(value = "Thương hiệu")
+    private String brand;
+
+    @ApiModelProperty(value = "Bảo hành")
+    private String baoHanh;
 }

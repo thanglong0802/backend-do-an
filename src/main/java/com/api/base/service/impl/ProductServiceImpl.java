@@ -65,6 +65,7 @@ public class ProductServiceImpl implements ProductService {
             throw new BusinessException(MessageCode.ERR_404.name(), messageUtil.getMessage(MessageCode.BASE_01001.name()), "Category id: " + request.getCategoriesId());
         }
         // thêm mới sản phẩm
+        request.setStatus(ProductStatus.CON_HANG.getValue());
         Product product = Utilities.copyProperties(request, Product.class);
         product.setStatus(ProductStatus.CON_HANG.getValue());
         productRepository.save(product);
