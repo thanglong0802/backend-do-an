@@ -8,18 +8,22 @@ import com.api.base.domain.orderdetail.OrderDetailResponse;
 import com.api.base.entity.Cart;
 import com.api.base.entity.Customer;
 import com.api.base.entity.OrderDetail;
+import com.api.base.entity.Product;
+import com.api.base.exception.BusinessException;
 import com.api.base.repository.CartRepository;
 import com.api.base.repository.CustomerRepository;
 import com.api.base.repository.OrderDetailRepository;
+import com.api.base.repository.ProductRepository;
 import com.api.base.service.OrderDetailService;
 import com.api.base.utils.Utilities;
 import com.api.base.utils.enumerate.OrderStatus;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -29,11 +33,13 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     private final OrderDetailRepository orderDetailRepository;
     private final CartRepository cartRepository;
     private final CustomerRepository customerRepository;
+    private final ProductRepository productRepository;
 
-    public OrderDetailServiceImpl(OrderDetailRepository orderDetailRepository, CartRepository cartRepository, CustomerRepository customerRepository) {
+    public OrderDetailServiceImpl(OrderDetailRepository orderDetailRepository, CartRepository cartRepository, CustomerRepository customerRepository, ProductRepository productRepository) {
         this.orderDetailRepository = orderDetailRepository;
         this.cartRepository = cartRepository;
         this.customerRepository = customerRepository;
+        this.productRepository = productRepository;
     }
 
     @Override
@@ -66,6 +72,16 @@ public class OrderDetailServiceImpl implements OrderDetailService {
         orderDetail.setPhoneNumber(request.getPhoneNumber());
         orderDetail.setStatus(OrderStatus.CHO_DUYET.getValue());
         orderDetailRepository.save(orderDetail);
+
+        Product product = productRepository.findById(request.getCartCreateRequest().getProductId()).get();
+        if (ObjectUtils.allNull(product)) throw new BusinessException("Product ID not found: " + product.getId());
+        product.setQuantity(product.getQuantity() - request.getCartCreateRequest().getQuantityProduct());
+        productRepository.save(product);
+
+        if (product.getQuantity() == 0) {
+            product.setStatus("Hết hàng");
+            productRepository.save(product);
+        }
 
         CustomerCreateRequest customerCreateRequest = new CustomerUpdateRequest();
         customerCreateRequest.setNameCustomer(request.getNameCustomer());
